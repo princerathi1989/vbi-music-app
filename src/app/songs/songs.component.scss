@@ -1,0 +1,54 @@
+.mat-column-add {
+  text-align: center;
+}
+
+table {
+  button {
+    background-color: #f18f26 !important;
+    &.remove {
+      background-color: #642116 !important;
+      color: #fff;
+    }
+  }
+}
+
+h3 {
+  color: #fff;
+  display: inline-block;
+  font-size: 30px;
+  font-weight: bold;
+  margin: 50px 60px 0 0;
+  text-transform: uppercase;
+}
+
+form {
+  border-bottom: 1px solid #333;
+  display: inline-block;
+  margin: 0 5%;
+  width: 90%;
+  .form-group {
+    float: left;
+    margin: 40px;
+    label {
+      color: #bbb;
+      font-size: 18px;
+      margin-right: 24px;
+    }
+    input {
+      border-radius: 5px;
+      font-size: 18px;
+      padding: 10px;
+    }
+  }
+  button {
+    background-color: #fff !important;
+    float: right;
+    font-size: 20px;
+    margin: 40px;
+    padding: 5px 20px;
+
+    &.cancel {
+      margin-right: 0 !important;
+    }
+  }
+}

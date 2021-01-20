@@ -1,0 +1,14 @@
+<button *ngIf="!createPlaylist" mat-raised-button (click)="create()">
+  <mat-icon>add</mat-icon>Create Playlist
+</button>
+<ng-container *ngIf="createPlaylist">
+  <app-songs [data]="data" (save)="showPlaylists()"></app-songs>
+</ng-container>
+<ul *ngIf="!createPlaylist">
+  <li *ngFor="let playlist of playlists" (click)="openPlaylist(playlist)">
+    <span>{{playlist.title}}</span>
+    <span class="date"><i>Created at: </i>&nbsp;<strong>{{playlist.createdAt}}</strong></span>
+  </li>
+</ul>
+<div *ngIf="!playlists && !createPlaylist" class="no-playlist">There are no saved playlists.</div>
+

@@ -1,0 +1,28 @@
+<ng-container *ngIf="!addSongs">
+  <h3>{{playlist.title}}</h3>
+  <button mat-raised-button class="shuffle" (click)="add()">
+    <mat-icon>add</mat-icon>&nbsp;Add Songs
+  </button>
+  <button mat-raised-button class="shuffle" (click)="shuffle(playlist.songs)">
+    <mat-icon>shuffle</mat-icon>&nbsp;Shuffle Songs
+  </button>
+  <button mat-raised-button class="shuffle" (click)="back()">
+    <mat-icon>home</mat-icon>
+  </button>
+  <ul>
+    <li *ngFor="let song of playlist.songs">
+      <img src={{song.thumbnailUrl}}>
+      <div class="song-details">
+        <div class="name">{{song.title}}</div>
+        <div class="album">{{albums[song.albumId - 1].title}}</div>
+      </div>
+      <button class="delete" mat-fab aria-label="Remove song from the playlist" (click)="remove(song);">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </li>
+  </ul>
+</ng-container>
+
+<ng-container *ngIf="addSongs">
+  <app-songs [data]="data" (save)="showPlaylists()"></app-songs>
+</ng-container>

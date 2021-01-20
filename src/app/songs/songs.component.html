@@ -1,0 +1,52 @@
+<ng-container *ngIf="displayedColumns">
+  <form *ngIf="displayedColumns.length > 3" (ngSubmit)="savePlaylist(playlistForm)" #playlistForm="ngForm">
+    <div class="form-group" *ngIf="data.flow=='create'">
+      <label for="name">Playlist Title</label>
+      <input type="text" class="form-control" id="title" required ngModel name="title" placeholder="Enter the name...">
+    </div>
+    <h3 *ngIf="data.flow.title">{{data.flow.title}}</h3>
+    <button type="submit" mat-raised-button aria-label="Save the playlist" [disabled]="!playlistForm.form.valid">
+      <mat-icon>save</mat-icon>
+      Save
+    </button>
+    <button class="cancel" mat-raised-button aria-label="Cancel" (click)="cancel()">
+      <mat-icon>cancel</mat-icon>
+      Cancel
+    </button>
+  </form>
+  <mat-form-field>
+    <input matInput (keyup)="search($event.target.value)" placeholder="Search for Songs, Albums....">
+  </mat-form-field>
+  <table mat-table cellspacing="4" [dataSource]="dataSource">
+    <ng-container matColumnDef="thumbnail">
+      <th mat-header-cell *matHeaderCellDef style="width:10%"></th>
+      <td mat-cell *matCellDef="let element">
+        <img src={{element.thumbnailUrl}}>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>Title</th>
+      <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+    </ng-container>
+    <ng-container matColumnDef="album">
+      <th mat-header-cell *matHeaderCellDef style="width:20%">Album</th>
+      <td mat-cell *matCellDef="let element"> {{albums[element.albumId - 1].title}} </td>
+    </ng-container>
+    <ng-container matColumnDef="add">
+      <th mat-header-cell *matHeaderCellDef style="width:15%"></th>
+      <td mat-cell *matCellDef="let element">
+        <button *ngIf="!element.added" mat-fab aria-label="Add song to the playlist" (click)="add(element);">
+          <mat-icon>add</mat-icon>
+        </button>
+        <button class="remove" *ngIf="element.added" mat-fab aria-label="Remove song from the playlist"
+          (click)="remove(element);">
+          <mat-icon>close</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[20]" showFirstLastButtons></mat-paginator>
+
+</ng-container>

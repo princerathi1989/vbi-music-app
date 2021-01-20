@@ -1,0 +1,28 @@
+$primary: #f18f26;
+
+mat-tab-group {
+  margin-top: 50px;
+  width: 100%;
+  .mat-tab-label-container {
+    background-color: #111;
+  }
+
+  .mat-tab-labels {
+    .mat-tab-label {
+      width: 50%;
+      .mat-tab-label-content {
+        color: $primary;
+        font-size: 24px;;
+      }
+    }
+  }
+
+  .mat-tab-body-content {
+    background-color: #000;
+  }
+}
+
+.mat-ink-bar {
+  background-color: $primary !important;
+}
+
